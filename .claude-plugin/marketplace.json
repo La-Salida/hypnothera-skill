@@ -11,7 +11,7 @@
 			"source": ".",
 			"displayName": "Hypnothera Personal Session",
 			"description": "Turn what your AI assistant knows about you into a personalized hypnosis session or multi-day journey on hypnothera.ai. Builds a short, anonymous brief you approve first — never sends chat logs.",
-			"version": "1.0.0",
+			"version": "1.1.0",
 			"author": {
 				"name": "Hypnothera",
 				"url": "https://hypnothera.ai"

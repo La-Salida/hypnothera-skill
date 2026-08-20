@@ -20,6 +20,11 @@ This repo is its own plugin marketplace. Inside Claude Code:
 
 Then ask: *"Make me a hypnosis session based on what you know about me."*
 
+**Already have a Hypnothera account?** The plugin bundles a remote MCP server.
+Run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
+opens to connect your account, and sessions are then created directly in your
+library without leaving the conversation.
+
 ## Install (manual skill file)
 
 For claude.ai (upload as a skill under Settings → Capabilities, or add to a

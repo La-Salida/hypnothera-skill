@@ -89,7 +89,27 @@ one. Ask if they'd like changes. Apply edits and show it again. Only
 proceed on explicit approval. If the user declines, stop — never retry
 silently.
 
-## Step 5 — Open the link
+## Step 5 — Create it
+
+### Preferred: connected Hypnothera account (MCP)
+
+If `mcp__hypnothera__*` tools are available and authenticated:
+
+1. Call `mcp__hypnothera__get_account` to confirm the connection and the
+   credit balance (a session script costs 1 credit).
+2. After the user approves the brief (Step 4 is still mandatory), call
+   `mcp__hypnothera__create_session` with the same fields as the brief:
+   `specific_needs`, `script_type`, `style`, `title`, `summary`,
+   `language`, plus `journey_days` and `journey_outline` for journeys.
+3. Share the returned `next_step_url` — the script is written in a minute
+   or two, and the user picks a voice and renders audio there.
+
+If the tools exist but the server needs authentication, tell the user to
+run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
+opens so they can sign in with their existing Hypnothera account (or
+create one; new accounts include free credits). Then retry.
+
+### Fallback: handoff link (works everywhere, no connection needed)
 
 1. Serialize the JSON compactly and encode it as **base64url** (UTF-8,
    `+`→`-`, `/`→`_`, strip `=` padding).
