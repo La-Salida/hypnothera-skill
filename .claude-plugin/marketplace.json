@@ -1,0 +1,26 @@
+{
+	"name": "hypnothera",
+	"description": "Personalized hypnosis sessions and multi-day journeys from what your AI assistant already knows about you — on hypnothera.ai.",
+	"owner": {
+		"name": "Hypnothera",
+		"url": "https://hypnothera.ai"
+	},
+	"plugins": [
+		{
+			"name": "hypnothera",
+			"source": ".",
+			"displayName": "Hypnothera Personal Session",
+			"description": "Turn what your AI assistant knows about you into a personalized hypnosis session or multi-day journey on hypnothera.ai. Builds a short, anonymous brief you approve first — never sends chat logs.",
+			"version": "1.0.0",
+			"author": {
+				"name": "Hypnothera",
+				"url": "https://hypnothera.ai"
+			},
+			"homepage": "https://hypnothera.ai/tools/agent-skill",
+			"repository": "https://github.com/La-Salida/hypnothera-skill",
+			"license": "MIT",
+			"keywords": ["hypnosis", "wellness", "relaxation", "sleep", "focus", "mental-rehearsal", "personalized"],
+			"category": "wellness"
+		}
+	]
+}
