@@ -22,8 +22,9 @@ Then ask: *"Make me a hypnosis session based on what you know about me."*
 
 **Already have a Hypnothera account?** The plugin bundles a remote MCP server.
 Run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
-opens to connect your account, and sessions are then created directly in your
-library without leaving the conversation.
+opens to connect your account. Your assistant can then find ready-made library
+sessions, create personalized ones, render their audio in the voice you pick,
+and continue multi-day journeys, all without leaving the conversation.
 
 ## Install (manual skill file)
 
