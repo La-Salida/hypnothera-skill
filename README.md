@@ -1,6 +1,6 @@
 # Hypnothera Personal Session — Claude Code plugin
 
-A plugin for Claude Code (and a portable skill for other AI agents): turn what
+A plugin for Claude Code and Codex (and a portable skill for other AI agents): turn what
 your assistant already knows about you into a personalized hypnosis session or
 multi-day journey on [hypnothera.ai](https://hypnothera.ai).
 
@@ -25,6 +25,26 @@ Run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
 opens to connect your account. Your assistant can then find ready-made library
 sessions, create personalized ones, render their audio in the voice you pick,
 and continue multi-day journeys, all without leaving the conversation.
+
+## Install (Codex)
+
+This repo is also a Codex plugin marketplace:
+
+```
+codex plugin marketplace add La-Salida/hypnothera-skill
+```
+
+```
+codex plugin add hypnothera@hypnothera
+```
+
+The plugin bundles the skill and the Hypnothera MCP server; sign in when Codex
+prompts you to connect it.
+
+## Install (any MCP client)
+
+Add `https://hypnothera.ai/api/mcp` as a remote MCP server (Streamable HTTP,
+OAuth). It is listed in the official MCP Registry as `ai.hypnothera/hypnothera`.
 
 ## Install (manual skill file)
 

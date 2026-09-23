@@ -1,0 +1,40 @@
+{
+	"name": "hypnothera",
+	"version": "1.2.0",
+	"description": "Turn what your AI assistant knows about you into a personalized hypnosis session or multi-day journey on hypnothera.ai. Builds a short, anonymous brief you approve first — never sends chat logs.",
+	"author": {
+		"name": "Hypnothera",
+		"email": "hello@hypnothera.ai",
+		"url": "https://hypnothera.ai"
+	},
+	"homepage": "https://hypnothera.ai/tools/agent-skill",
+	"repository": "https://github.com/La-Salida/hypnothera-skill",
+	"license": "MIT",
+	"keywords": ["hypnosis", "personalized hypnosis", "wellness", "relaxation", "sleep", "focus", "confidence", "mental-rehearsal", "guided audio"],
+	"skills": "./skills/",
+	"mcpServers": {
+		"hypnothera": {
+			"type": "http",
+			"url": "https://hypnothera.ai/api/mcp"
+		}
+	},
+	"interface": {
+		"displayName": "Hypnothera",
+		"shortDescription": "Personalized hypnosis sessions and journeys",
+		"longDescription": "Hypnothera turns what your assistant knows about your goals into a personalized guided hypnosis session or a multi-day journey, rendered as audio in the voice you choose. Search the free library of ready-made sessions, create your own for sleep, focus, confidence or mental rehearsal before a big day, and continue journeys day by day. The skill builds a short, anonymous brief you approve first and never sends chat logs. A wellness and self-improvement tool, not a medical service.",
+		"developerName": "Hypnothera",
+		"category": "Lifestyle",
+		"capabilities": ["Read", "Write"],
+		"websiteURL": "https://hypnothera.ai",
+		"privacyPolicyURL": "https://hypnothera.ai/privacy",
+		"termsOfServiceURL": "https://hypnothera.ai/terms",
+		"defaultPrompt": [
+			"Make me a sleep session from what you know about me",
+			"Prep me for my interview with a hypnosis session",
+			"Turn my goals into a 7-day hypnosis journey"
+		],
+		"brandColor": "#8B45D6",
+		"composerIcon": "./assets/icon.png",
+		"logo": "./assets/logo.png"
+	}
+}
