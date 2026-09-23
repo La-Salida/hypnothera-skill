@@ -1,0 +1,20 @@
+{
+	"name": "hypnothera",
+	"interface": {
+		"displayName": "Hypnothera"
+	},
+	"plugins": [
+		{
+			"name": "hypnothera",
+			"source": {
+				"source": "local",
+				"path": "./"
+			},
+			"policy": {
+				"installation": "AVAILABLE",
+				"authentication": "ON_INSTALL"
+			},
+			"category": "Lifestyle"
+		}
+	]
+}
