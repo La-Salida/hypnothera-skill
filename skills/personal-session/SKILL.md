@@ -1,8 +1,11 @@
 ---
-description: Create a personalized hypnosis session or multi-day journey on hypnothera.ai from what this agent already knows about the user. Use when the user asks for a hypnosis, relaxation, sleep, focus, or confidence session "based on what you know about me", a personalized wind-down, mental rehearsal for an upcoming event, or a multi-day self-improvement journey. Never sends chat logs — builds a short anonymous brief the user approves first.
+description: Create a personalized hypnosis session or multi-day journey on hypnothera.ai from what this agent already knows about the user. Use when the user asks for a hypnosis, relaxation, sleep, focus, or confidence session "based on what you know about me", a personalized wind-down, mental rehearsal for an upcoming event, or a multi-day self-improvement journey. With a connected account it can also find ready-made library sessions, render audio in the conversation, and continue journeys day by day. Never sends chat logs — builds a short anonymous brief the user approves first.
 ---
 
 # Hypnothera Personal Session
+
+Full setup, tool reference, credit costs, and troubleshooting:
+https://hypnothera.ai/help/api-and-agents.md
 
 Turn what you already know about the user into a personalized guided
 hypnosis session (or multi-day journey) on hypnothera.ai.
@@ -23,6 +26,14 @@ hypnosis session (or multi-day journey) on hypnothera.ai.
   crisis, or asks for treatment of any kind. Do not build a brief. Suggest
   they speak with a qualified professional. Hypnothera is a wellness and
   self-improvement tool, not a medical service.
+
+## Ready-made option (MCP, free)
+
+If the user wants something to play right now rather than a new
+personalized session, call `mcp__hypnothera__search_sessions` (optionally
+with a `topic` from `mcp__hypnothera__list_topics`). Library sessions play
+free at their `listen_url`, with no credits. Offer a personalized session
+when nothing fits.
 
 ## Step 1 — Reflect
 
@@ -60,7 +71,7 @@ Construct this JSON exactly (omit optional fields you don't need):
     "specific_needs": "What the session should work on, in 2-6 sentences. Max 2000 chars. Required.",
     "script_type": "standard | sleep | morning | nsdr | lucid_dreaming | visualization",
     "style": "mindfulness | classic | conversational | storytelling | direct | experimental | nlp | energetic | rapid | somatic",
-    "title": "Short session title, max 120 chars",
+    "title": "Optional brief label / journey playlist title, max 120 chars",
     "summary": "One-line description for the confirm card, max 500 chars",
     "language": "english"
   },
@@ -79,14 +90,18 @@ Construct this JSON exactly (omit optional fields you don't need):
   must be 2–30. The `outline` is optional but recommended: one entry per
   day with a short title and a one-sentence description of that day's
   focus, building progressively toward the goal.
+- `brief.title` labels the handoff preview and names a journey playlist. It does
+  not set the generated session's title. For single-session MCP requests, omit
+  `title`; do not promise that a proposed title will become the saved title.
 - Outline titles ≤ 120 chars; descriptions and directives ≤ 400 chars.
 
 ## Step 4 — Approval gate (mandatory)
 
 Before building any URL, show the user the brief in plain language: the
 goal text, session type, style, and the day-by-day outline if there is
-one. Ask if they'd like changes. Apply edits and show it again. Only
-proceed on explicit approval. If the user declines, stop — never retry
+one. Explain that a script costs 1 credit and audio rendering costs about
+1 additional credit per minute. Ask if they'd like changes. Apply edits
+and show it again. Only proceed on explicit approval. If the user declines, stop — never retry
 silently.
 
 ## Step 5 — Create it
@@ -95,19 +110,47 @@ silently.
 
 If `mcp__hypnothera__*` tools are available and authenticated:
 
-1. Call `mcp__hypnothera__get_account` to confirm the connection and the
-   credit balance (a session script costs 1 credit).
+1. Call `mcp__hypnothera__get_account` to confirm the connection, plan,
+   and credit balance (a session script costs 1 credit; rendering audio
+   costs about 1 additional credit per minute).
 2. After the user approves the brief (Step 4 is still mandatory), call
    `mcp__hypnothera__create_session` with the same fields as the brief:
-   `specific_needs`, `script_type`, `style`, `title`, `summary`,
-   `language`, plus `journey_days` and `journey_outline` for journeys.
-3. Share the returned `next_step_url` — the script is written in a minute
-   or two, and the user picks a voice and renders audio there.
+   `specific_needs`, `script_type`, `style`, `summary`, `language`, plus
+   `title`, `journey_days` and `journey_outline` for journeys. Keep the returned
+   `script_id` (and `collection_id` for a journey).
+3. The script takes a minute or two to write. Call
+   `mcp__hypnothera__get_session` with the `script_id` to check that its
+   `status` is `completed` before rendering. Don't call it in a tight loop.
+4. Offer to render the audio in the conversation. Call
+   `mcp__hypnothera__list_voices` and suggest a few voices where
+   `available` is true (each has a `preview_url`). Tell the user the
+   estimated cost: about 1 credit per minute of `duration_minutes`.
+5. Only after the user approves the voice and the cost, call
+   `mcp__hypnothera__render_audio` once with `script_id` and `voice_id`.
+   Rendering takes a few minutes. Then `get_session` returns
+   `has_audio: true` and an `audio_url` the user can play directly for
+   about two hours; `listen_url` is the session's permanent page.
+6. If the user would rather choose a voice on the website, share the
+   returned `next_step_url` instead.
 
 If the tools exist but the server needs authentication, tell the user to
 run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
 opens so they can sign in with their existing Hypnothera account (or
 create one; new accounts include free credits). Then retry.
+
+### Continuing a journey (MCP)
+
+`create_session` with `journey_days` creates Day 1 only. To create the
+next day when the user asks for it:
+
+1. Call `mcp__hypnothera__list_journeys` to find the `journey_id` and see
+   which day comes next and whether the previous day's script is finished.
+2. Call `mcp__hypnothera__continue_journey` with the `journey_id`, plus
+   optional `notes` in wellness language about how the previous day went.
+   It builds on the previous day's session and that day's planned focus.
+3. It creates one day per call, spends credits like `create_session`, and
+   needs a Premium plan. Never call it several times to create days ahead.
+4. Render the new day's audio the same way as steps 3–5 above.
 
 ### Fallback: handoff link (works everywhere, no connection needed)
 
@@ -124,11 +167,18 @@ create one; new accounts include free credits). Then retry.
    any server until the user confirms.
 
 3. Tell the user what to expect: they'll review the brief on
-   hypnothera.ai, sign in (new accounts include free credits that cover
-   the first session), and their audio is generated from there. For
-   journeys, Day 1 is created first; later days use 1 credit each.
+   hypnothera.ai, sign in, check their credit balance, and create the script.
+   They then choose a voice and render audio on the website. For journeys,
+   Day 1 is created first; later scripts and audio use additional credits.
 
 ## Failure handling
+
+- Never automatically retry `create_session`, `continue_journey`, or
+  `render_audio` after a timeout or uncertain result. None is idempotent;
+  check with `get_session` or `list_journeys` first to avoid duplicate
+  sessions and credit charges.
+- A handoff fragment is not encryption. Anyone with the full link can read the
+  brief; keep it anonymous and do not post the link publicly.
 
 - If the user declines the brief, stop.
 - If the link doesn't open on their machine, print the URL for them to
