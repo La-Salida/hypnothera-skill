@@ -21,7 +21,7 @@
 	"interface": {
 		"displayName": "Hypnothera",
 		"shortDescription": "Personalized hypnosis sessions and journeys",
-		"longDescription": "Hypnothera turns what your assistant knows about your goals into a personalized guided hypnosis session or a multi-day journey, rendered as audio in the voice you choose. Search the free library of ready-made sessions, create your own for sleep, focus, confidence or mental rehearsal before a big day, and continue journeys day by day. The skill builds a short, anonymous brief you approve first and never sends chat logs. A wellness and self-improvement tool, not a medical service.",
+		"longDescription": "Hypnothera turns what your assistant knows about your goals into a personalized guided hypnosis session or a multi-day journey, rendered as audio in the voice you choose. Search the free library of ready-made sessions, create your own for sleep, focus, confidence or mental rehearsal before a big day, and continue journeys day by day. The skill builds a short, anonymous brief you approve first and never sends chat logs. A wellness and self-improvement tool.",
 		"developerName": "Hypnothera",
 		"category": "Lifestyle",
 		"capabilities": ["Read", "Write"],
