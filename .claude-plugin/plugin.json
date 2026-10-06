@@ -1,7 +1,7 @@
 {
 	"name": "hypnothera",
 	"displayName": "Hypnothera Personal Session",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"mcpServers": {
 		"hypnothera": {
 			"type": "http",
@@ -11,10 +11,26 @@
 	"description": "Turn what your AI assistant knows about you into a personalized hypnosis session or multi-day journey on hypnothera.ai. Builds a short, anonymous brief you approve first — never sends chat logs.",
 	"author": {
 		"name": "Hypnothera",
-		"url": "https://hypnothera.ai"
+		"url": "https://hypnothera.ai",
+		"email": "hello@hypnothera.ai"
 	},
 	"homepage": "https://hypnothera.ai/tools/agent-skill",
 	"repository": "https://github.com/La-Salida/hypnothera-skill",
 	"license": "MIT",
-	"keywords": ["hypnosis", "wellness", "relaxation", "sleep", "focus", "mental-rehearsal", "personalized"]
+	"keywords": [
+		"hypnosis",
+		"personalized hypnosis",
+		"wellness",
+		"relaxation",
+		"sleep",
+		"focus",
+		"confidence",
+		"mental-rehearsal",
+		"guided audio"
+	],
+	"icon": "./assets/icon.png",
+	"documentationUrl": "https://hypnothera.ai/help/api-and-agents",
+	"supportUrl": "https://hypnothera.ai/support",
+	"privacyPolicyUrl": "https://hypnothera.ai/privacy",
+	"termsOfServiceUrl": "https://hypnothera.ai/terms"
 }
