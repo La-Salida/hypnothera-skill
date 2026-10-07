@@ -46,6 +46,25 @@ prompts you to connect it.
 Add `https://hypnothera.ai/api/mcp` as a remote MCP server (Streamable HTTP,
 OAuth). It is listed in the official MCP Registry as `ai.hypnothera/hypnothera`.
 
+## Tools
+
+The remote MCP server (`https://hypnothera.ai/api/mcp`) exposes nine tools.
+None of them delete anything, change billing, or reach the open web.
+
+| Tool | What it does | Credits |
+|---|---|---|
+| `get_account` | Connected account's email, plan, and credit balance | Free, read-only |
+| `list_topics` | Library topics such as sleep, calm, focus, and confidence | Free, read-only |
+| `search_sessions` | Search the public library of ready-made sessions, which play free at their `listen_url` | Free, read-only |
+| `get_session` | A library session or one of your own, with its status and, once rendered, a playable audio link | Free, read-only |
+| `list_voices` | Narrator voices with previews and which ones your plan can use | Free, read-only |
+| `list_journeys` | Your multi-day journeys, with each day's plan and status | Free, read-only |
+| `create_session` | Writes a personalized session script, or Day 1 of a 2–30 day journey, from a brief you approve first | Spends credits |
+| `continue_journey` | Creates the next day of a journey, one day per call | Spends credits |
+| `render_audio` | Renders a finished script as audio in the voice you choose (about 1 credit per minute) | Spends credits |
+
+Full reference: https://hypnothera.ai/help/api-and-agents
+
 ## Install (manual skill file)
 
 For claude.ai (upload as a skill under Settings → Capabilities, or add to a
