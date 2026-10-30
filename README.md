@@ -1,15 +1,15 @@
-# Hypnothera Personal Session
+# Hypnothera Personal Session — Claude Code plugin
 
-A plugin for Claude (and a portable skill for other AI agents) that writes a
-personalized guided hypnosis script, or a multi-day journey of scripts, from
-what your assistant already knows about your goals.
+A plugin for Claude Code and Codex (and a portable skill for other AI agents): turn what
+your assistant already knows about you into a personalized hypnosis session or
+multi-day journey on [hypnothera.ai](https://hypnothera.ai).
 
-Everything happens in your conversation as text. The skill proposes a short
-brief, free of identifying details, and writes the script only after you
-approve it. It doesn't call any server, create audio, or send anything to
-hypnothera.ai or anywhere else.
+Your conversations never leave your assistant. The skill distills a short,
+anonymous brief, shows it to you for approval, and only the approved brief
+travels to hypnothera.ai — in the link's URL fragment, which browsers don't
+send to servers.
 
-## Install (Claude Code)
+## Install (Claude Code — recommended)
 
 This repo is its own plugin marketplace. Inside Claude Code:
 
@@ -20,33 +20,71 @@ This repo is its own plugin marketplace. Inside Claude Code:
 
 Then ask: *"Make me a hypnosis session based on what you know about me."*
 
+**Already have a Hypnothera account?** The plugin bundles a remote MCP server.
+Run `/mcp`, select **hypnothera**, and choose **Authenticate** — a browser
+opens to connect your account. Your assistant can then find ready-made library
+sessions, create personalized ones, render their audio in the voice you pick,
+and continue multi-day journeys, all without leaving the conversation.
+
+## Install (Codex)
+
+This repo is also a Codex plugin marketplace:
+
+```
+codex plugin marketplace add La-Salida/hypnothera-skill
+```
+
+```
+codex plugin add hypnothera@hypnothera
+```
+
+The plugin bundles the skill and the Hypnothera MCP server; sign in when Codex
+prompts you to connect it.
+
+## Install (any MCP client)
+
+Add `https://hypnothera.ai/api/mcp` as a remote MCP server (Streamable HTTP,
+OAuth). It is listed in the official MCP Registry as `ai.hypnothera/hypnothera`.
+
+## Tools
+
+The remote MCP server (`https://hypnothera.ai/api/mcp`) exposes nine tools.
+None of them delete anything, change billing, or reach the open web.
+
+| Tool | What it does | Credits |
+|---|---|---|
+| `get_account` | Connected account's email, plan, and credit balance | Free, read-only |
+| `list_topics` | Library topics such as sleep, calm, focus, and confidence | Free, read-only |
+| `search_sessions` | Search the public library of ready-made sessions, which play free at their `listen_url` | Free, read-only |
+| `get_session` | A library session or one of your own, with its status and, once rendered, a playable audio link | Free, read-only |
+| `list_voices` | Narrator voices with previews and which ones your plan can use | Free, read-only |
+| `list_journeys` | Your multi-day journeys, with each day's plan and status | Free, read-only |
+| `create_session` | Writes a personalized session script, or Day 1 of a 2–30 day journey, from a brief you approve first | Spends credits |
+| `continue_journey` | Creates the next day of a journey, one day per call | Spends credits |
+| `render_audio` | Renders a finished script as audio in the voice you choose (about 1 credit per minute) | Spends credits |
+
+Full reference: https://hypnothera.ai/help/api-and-agents
+
 ## Install (manual skill file)
 
-For claude.ai (upload as a skill, or add to a project), or any agent that
-reads skill files, use
+For claude.ai (upload as a skill under Settings → Capabilities, or add to a
+project), Codex, or any agent that reads skill files, use
 [`skills/personal-session/SKILL.md`](skills/personal-session/SKILL.md), or:
 
 ```bash
 mkdir -p ~/.claude/skills/hypnothera-personal-session && \
-curl -fsSL https://raw.githubusercontent.com/La-Salida/hypnothera-skill/main/skills/personal-session/SKILL.md \
+curl -fsSL https://hypnothera.ai/skills/hypnothera-session/SKILL.md \
   -o ~/.claude/skills/hypnothera-personal-session/SKILL.md
 ```
 
-## What you get
+More: https://hypnothera.ai/tools/agent-skill
 
-- A brief to approve first: focus, session type (standard, sleep, morning,
-  mental rehearsal, short reset), style, and length.
-- A full script with settling in, induction, deepening, the personalized
-  part, and a closing that either brings you back alert or lets you drift
-  into sleep.
-- For journeys, one day at a time, each building on the last.
+## Notes
 
-Read it slowly, have someone read it to you, or record it in your own voice.
-
-## About Hypnothera
-
-[Hypnothera](https://hypnothera.ai) is a separate website and app from the
-same team, with narrated sessions. This plugin doesn't connect to it.
-
-Hypnothera is a wellness and self-improvement tool for relaxation, focus,
-sleep quality, and confidence, not a medical service.
+- The canonical copy of the skill lives at
+  `skills/personal-session/SKILL.md` in this repo and is mirrored at
+  `https://hypnothera.ai/skills/hypnothera-session/SKILL.md` (web repo
+  `public/skills/hypnothera-session/SKILL.md`). Keep the two in sync when
+  editing.
+- Hypnothera is a wellness and self-improvement tool for relaxation, focus,
+  sleep quality, and confidence — not a medical service.
