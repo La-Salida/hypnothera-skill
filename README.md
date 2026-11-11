@@ -1,6 +1,6 @@
-# Hypnothera Personal Session — Claude Code plugin
+# Hypnothera Personal Session — Claude Code, Codex and Cursor plugin
 
-A plugin for Claude Code and Codex (and a portable skill for other AI agents): turn what
+A plugin for Claude Code, Codex and Cursor (and a portable skill for other AI agents): turn what
 your assistant already knows about you into a personalized hypnosis session or
 multi-day journey on [hypnothera.ai](https://hypnothera.ai).
 
@@ -40,6 +40,18 @@ codex plugin add hypnothera@hypnothera
 
 The plugin bundles the skill and the Hypnothera MCP server; sign in when Codex
 prompts you to connect it.
+
+## Install (Cursor)
+
+This repo is also a Cursor plugin (`.cursor-plugin/plugin.json`). Find
+**Hypnothera** in the Cursor Marketplace, or install it locally:
+
+```bash
+git clone https://github.com/La-Salida/hypnothera-skill ~/.cursor/plugins/local/hypnothera
+```
+
+Then run **Developer: Reload Window**. The plugin bundles the skill and the
+Hypnothera MCP server; Cursor asks you to sign in the first time a tool runs.
 
 ## Install (any MCP client)
 
