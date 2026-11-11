@@ -1,4 +1,5 @@
 ---
+name: personal-session
 description: Create a personalized hypnosis session or multi-day journey on hypnothera.ai from what this agent already knows about the user. Use when the user asks for a hypnosis, relaxation, sleep, focus, or confidence session "based on what you know about me", a personalized wind-down, mental rehearsal for an upcoming event, or a multi-day self-improvement journey. With a connected account it can also find ready-made library sessions, render audio in the conversation, and continue journeys day by day. Never sends chat logs — builds a short anonymous brief the user approves first.
 ---
 
