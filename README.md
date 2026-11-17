@@ -1,6 +1,6 @@
-# Hypnothera Personal Session — Claude Code, Codex and Cursor plugin
+# Hypnothera Personal Session — Claude Code, Codex, Cursor and Gemini CLI plugin
 
-A plugin for Claude Code, Codex and Cursor (and a portable skill for other AI agents): turn what
+A plugin for Claude Code, Codex, Cursor and Gemini CLI (and a portable skill for other AI agents): turn what
 your assistant already knows about you into a personalized hypnosis session or
 multi-day journey on [hypnothera.ai](https://hypnothera.ai).
 
@@ -52,6 +52,18 @@ git clone https://github.com/La-Salida/hypnothera-skill ~/.cursor/plugins/local/
 
 Then run **Developer: Reload Window**. The plugin bundles the skill and the
 Hypnothera MCP server; Cursor asks you to sign in the first time a tool runs.
+
+## Install (Gemini CLI)
+
+This repo is also a Gemini CLI extension (`gemini-extension.json`):
+
+```bash
+gemini extensions install https://github.com/La-Salida/hypnothera-skill
+```
+
+Restart Gemini CLI. The extension bundles the skill and the Hypnothera MCP
+server; Gemini CLI opens a browser to sign in the first time a tool runs
+(or run `/mcp auth hypnothera`).
 
 ## Install (any MCP client)
 

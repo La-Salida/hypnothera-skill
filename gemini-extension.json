@@ -1,0 +1,11 @@
+{
+  "name": "hypnothera",
+  "version": "1.2.1",
+  "description": "Turn what your AI assistant knows about you into a personalized hypnosis session or multi-day journey on hypnothera.ai. Builds a short, anonymous brief you approve first and never sends chat logs.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "hypnothera": {
+      "httpUrl": "https://hypnothera.ai/api/mcp"
+    }
+  }
+}
